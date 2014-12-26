@@ -1,0 +1,10 @@
+#For busybox
+docker run -i -t -name vct_data  vct_datastore
+
+#For postgres
+docker run -d -e "POSTGRES_PASSWORD=confine" -e "POSTGRES_USER=confine" --volumes-from vct_data --name vct_pg vct_postgres
+docker run -d --volumes-from vct_data --name vct_pg vct_postgres2 postgres
+
+#For vct
+docker run -i -t -P --name vct_app --link vct_pg:db vct3 /bin/bash
+
