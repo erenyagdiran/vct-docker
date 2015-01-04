@@ -1,0 +1,11 @@
+#For busybox
+#docker run -d --name vct_data  vct_datastore
+docker run -d -t -i --name vct_data  vct_datastore /bin/sh
+
+
+#For postgres
+docker run -d --volumes-from vct_data --name vct_pg vct_postgres postgres
+
+#For vct
+#docker run -i -t -P --name vct_app --link vct_pg:db vct3 /bin/bash
+

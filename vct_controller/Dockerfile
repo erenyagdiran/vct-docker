@@ -41,7 +41,7 @@ CMD ["/sbin/my_init"]
  #Set rootpasswd
  Run echo "root:confine"|chpasswd
  #Clone git repo
- Run su -l vct -- -c "git clone -b testing 'http://git.confine-project.eu/confine.git' /home/vct/confine-dist"
+ Run su -l vct -- -c "git clone -b testing 'https://github.com/erenyagdiran/confine-dist.git' /home/vct/confine-dist"
  #Append $PATH variable
  Run su -l vct -- -c 'echo PATH="$HOME/confine-dist/utils/vct:$PATH" >> /home/vct/.bashrc'
  #Passwordless Sudo

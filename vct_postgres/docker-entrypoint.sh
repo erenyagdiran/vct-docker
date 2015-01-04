@@ -42,16 +42,16 @@ if [ "$1" = 'postgres' ]; then
                 #       $op USER "$POSTGRES_USER" WITH SUPERUSER $pass
                 #EOSQL
                 #{ echo; 
-                su postgres -c "psql -c \"CREATE USER confine PASSWORD 'confine';\""
-                su postgres -c "psql -c \"CREATE DATABASE controller OWNER confine;\""
+                #su postgres -c "psql -c \"CREATE USER confine PASSWORD 'confine';\""
+                #su postgres -c "psql -c \"CREATE DATABASE controller OWNER confine;\""
 
                 echo "host all all  0.0.0.0/0 trust"  >> "$PGDATA"/pg_hba.conf
 
-                #if [ -d /docker-entrypoint-initdb.d ]; then
-                #       for f in /docker-entrypoint-initdb.d/*.sh; do
-                #               [ -f "$f" ] && . "$f"
-                #       done
-                #fi
+                if [ -d /docker-entrypoint-initdb.d ]; then
+                       for f in /docker-entrypoint-initdb.d/*.sh; do
+                               [ -f "$f" ] && . "$f"
+                       done
+                fi
         fi
 
         exec gosu postgres "$@"
