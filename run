@@ -1,7 +1,7 @@
 #For busybox
 #docker run -d --name vct_data  vct_datastore
 docker rm vct_data
-docker run -d -t -i --name vct_data  vct_datastore /bin/sh
+docker run -d -t -i -v /var/lib/postgresql --name vct_data  vct_datastore /bin/sh
 
 
 #For postgres
@@ -10,5 +10,5 @@ docker run -d --volumes-from vct_data --name vct_pg vct_postgres postgres
 
 docker rm vct_app
 #For vct
-docker run -i -t -p 80:80 --name vct_app --link vct_pg:db vct_controller /bin/bash
+docker run --privileged -i -t -p 80:80 --name vct_app --link vct_pg:db vct_controller2 /bin/bash
 
