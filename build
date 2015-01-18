@@ -8,5 +8,5 @@ echo "Building VCT database..."
 docker build -t vct_postgres vct_postgres/
 
 
-#echo "Building VCT controller..."
-#docker build -t vct_controller vct_controller/
+echo "Building VCT controller..."
+docker build -t vct_controller_dummy vct_controller_dummy/
