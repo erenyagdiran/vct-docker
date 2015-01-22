@@ -1,11 +1,11 @@
 #!/bin/sh
 
 #permission fixer for fuse dev
-chown root:fuse /dev/fuse
-chmod 770 /dev/fuse
+exec chown root:fuse /dev/fuse
+exec chmod 770 /dev/fuse
 
 #permission fixer for kvm dev
-chown root:kvm /dev/kvm
-chmod 770 /dev/kvm
+exec chown root:kvm /dev/kvm
+exec chmod 770 /dev/kvm
 
 

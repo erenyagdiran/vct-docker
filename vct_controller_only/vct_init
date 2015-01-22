@@ -1,0 +1,5 @@
+#!/bin/bash
+su confine -c "sudo $managepy startservices --no-tinc --no-celeryd --no-celerybeat --no-apache2"
+su confine -c "sudo $managepy restartservices"
+
+
