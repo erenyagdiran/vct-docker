@@ -30,15 +30,12 @@ service tinc restart
 su confine -c "$managepy updatetincd"
 su confine -c "$managepy setuppki --org_name VCT --noinput"
 
+su confine -c "$managepy collectstatic --noinput"
 #Apache installation
 apt-get install -y libapache2-mod-wsgi apache2 apache2-bin apache2-data
 $managepy setupapache --noinput --user confine --processes 2 --threads 25
 
-su confine -c "$managepy collectstatic --noinput"
-su confine -c "$managepy loaddata firmwareconfig"
-#su confine -c "$managepy loaddata "$VCT_DIR/server/vct/fixtures/firmwareconfig.json"
+su confine -c "$managepy createmaintenancekey"
+su confine -c "sudo $managepy setupfirmware"
 su confine -c "$managepy syncfirmwareplugins"
-
-#su confine -c "sudo $managepy startservices --no-tinc --no-celeryd --no-celerybeat --no-apache2"
-#su confine -c "sudo $managepy restartservices"
 
