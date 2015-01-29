@@ -1,0 +1,40 @@
+Docker build Could not resolve 'archive.ubuntu.com'” apt-get fails to install anything
+
+Uncomment the following line in /etc/default/docker
+DOCKER_OPTS="--dns 8.8.8.8 --dns 8.8.4.4"
+
+Restart the Docker service sudo service docker restart
+
+Delete any images which have cached the invalid DNS settings.
+
+Build again and the problem should be solved.
+
+=========================================================================================
+Docker delete all images
+docker rmi -f $(docker images -q)
+=========================================================================================
+
+The last build for this research device has failed. This problem has been reported to the operators, but you can try to build again the image
+
+This means fuse group cannot be mapped correctly from host system.
+
+root@42825a4046b7:/#  chown root:fuse /dev/fuse
+root@42825a4046b7:/# chmod 770 /dev/fuse
+
+These will fix the problem
+=========================================================================================
+
+ERROR    No domains available for virt type 'hvm', arch 'x86_64', domain type 'kvm'
+VCT  ERROR vct_node_create(): Failed creating domain name=vcrd-0004
+
+chown root:kvm /dev/kvm
+chmod 770 /dev/kvm
+
+=========================================================================================
+
+chown: cannot access '/dev/kvm': No such file or directory
+chmod: cannot access '/dev/kvm': No such file or directory
+
+modprobe kvm_intel
+
+=========================================================================================

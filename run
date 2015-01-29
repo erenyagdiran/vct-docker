@@ -8,7 +8,7 @@ docker run -d -t -i -v /var/lib/postgresql/data --name vct_data  vct_datastore /
 docker rm vct_pg
 docker run -d --volumes-from vct_data --name vct_pg vct_postgres postgres
 
-#docker rm vct_app
+docker rm vct_app
 #For vct
-#docker run --privileged -i -t -p 80:80 --name vct_app --link vct_pg:db vct_controller_dummy /bin/bash
+docker run --privileged -i -t -p 80:80 --name vct_app --link vct_pg:db vct_controller_dummy /bin/bash
 

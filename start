@@ -1,0 +1,4 @@
+#!/bin/bash
+docker start vct_data
+docker start vct_pg
+docker start vct_app
