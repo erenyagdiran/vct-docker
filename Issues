@@ -38,3 +38,8 @@ chmod: cannot access '/dev/kvm': No such file or directory
 modprobe kvm_intel
 
 =========================================================================================
+
+internal error: unable to execute QEMU command 'cont': Resetting the Virtual Machine is required
+http://serverfault.com/questions/654535/internal-error-unable-to-execute-qemu-command-cont-resetting-the-virtual-mac
+
+This cost me a alot of time. Fuck u digitalocean
