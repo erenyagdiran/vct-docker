@@ -39,4 +39,11 @@ modprobe kvm_intel
 
 =========================================================================================
 
+<<<<<<< HEAD
 Use Docker 1.4.1 others fail to map /dev/fuse
+=======
+internal error: unable to execute QEMU command 'cont': Resetting the Virtual Machine is required
+http://serverfault.com/questions/654535/internal-error-unable-to-execute-qemu-command-cont-resetting-the-virtual-mac
+
+This cost me a alot of time. Fuck u digitalocean
+>>>>>>> eafafcdc2bd4327d144469d89f8963a5f35f7ef3
