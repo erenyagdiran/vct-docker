@@ -21,19 +21,22 @@ User.objects.create_superuser('confine', 'confine@confine-project.eu', 'confine'
 #celeryd
 $managepy setupceleryd --username confine
 
+
 service rabbitmq-server restart
 #tincd
-
 $managepy setuptincd --noinput --mgmt_prefix $mgmt_prefix
 service tinc restart
 
+
 su confine -c "$managepy updatetincd"
 su confine -c "$managepy setuppki --org_name VCT --noinput"
-
 su confine -c "$managepy collectstatic --noinput"
+
+
 #Apache installation
 apt-get install -y libapache2-mod-wsgi apache2 apache2-bin apache2-data
 $managepy setupapache --noinput --user confine --processes 2 --threads 25
+
 
 su confine -c "$managepy createmaintenancekey"
 su confine -c "sudo $managepy setupfirmware"

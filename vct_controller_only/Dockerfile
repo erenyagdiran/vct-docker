@@ -8,7 +8,7 @@ FROM phusion/baseimage:0.9.16
 ENV HOME /root
 
 # Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
+CMD ["/sbin/vct_init"]
 
 #Non interactive package installation
 ENV DEBIAN_FRONTEND noninteractive
@@ -33,16 +33,13 @@ RUN su confine -c "sudo controller-admin.sh install_requirements"
 #create project
 RUN su confine -c "cd /home/confine && controller-admin.sh clone confine"
 
-
 #this is the installer
 COPY controller_only_installer.bash /root/
 RUN /bin/bash /root/controller_only_installer.bash 
 
 #vct init
-#COPY vct_init /sbin/vct_init
-#CMD ["/sbin/vct_init"]
+COPY vct_init /sbin/vct_init
+CMD ["/sbin/vct_init"]
 
-RUN mkdir /etc/service/vct_init
-ADD vct_init.sh /etc/service/vct_init/run
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

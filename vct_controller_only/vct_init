@@ -1,5 +1,19 @@
 #!/bin/bash
+#exec /sbin/setuser confine sudo /usr/bin/python /home/confine/confine/manage.py startservices --no-tinc --no-celeryd --no-celerybeat --no-apache2 >> /var/log/vctdocker.log 2>&1 && exec /sbin/setuser confine sudo /usr/bin/python /home/confine/confine/manage.py restartservices >> /var/log/vctdocker.log 2>&1
+
+#permission fixer for fuse dev
+chown root:fuse /dev/fuse
+chmod 770 /dev/fuse
+
+#permission fixer for kvm dev
+chown root:kvm /dev/kvm
+chmod 770 /dev/kvm
+
+service libvirt-bin restart
+service postfix restart
+service rabbitmq-server restart
+
+managepy="python /home/confine/confine/manage.py"
 su confine -c "sudo $managepy startservices --no-tinc --no-celeryd --no-celerybeat --no-apache2"
 su confine -c "sudo $managepy restartservices"
-
-
+sleep 36500d
