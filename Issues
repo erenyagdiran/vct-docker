@@ -38,3 +38,5 @@ chmod: cannot access '/dev/kvm': No such file or directory
 modprobe kvm_intel
 
 =========================================================================================
+
+Use Docker 1.4.1 others fail to map /dev/fuse
