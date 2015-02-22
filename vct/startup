@@ -1,6 +1,13 @@
+#!/bin/bash
+
 chown root:kvm /dev/kvm
 chmod 770 /dev/kvm
 service libvirt-bin restart
 service postfix restart
 service rabbitmq-server restart
-vct_system_init
+su -l vct -- -c /home/vct/confine-dist/utils/vct/vct_system_init
+
+while true; do
+  sleep 20 &
+  wait $!
+done

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Building VCT"
+docker build -t vct vct/
